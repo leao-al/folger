@@ -1,0 +1,151 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.folio-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: #e0e0e0;
+}
+
+.container {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 12000px;
+    width: 100%;
+    background-image: url('fundo.jpg'); /* Adiciona a imagem de fundo */
+}
+
+.banner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.section {
+    background: #ddd;
+    border-radius: 40px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, max-width 0.3s, max-height 0.3s, background-image 0.3s;
+    width: calc(33.333% - 20px);
+    box-sizing: border-box;
+    margin: 10px 0;
+}
+
+.section.expanded {
+    max-width: 100% !important; /* Faz a seção ocupar a largura total do container */
+    max-height: 90vh; /* Limita a altura da seção para não ultrapassar a altura da tela */
+    background-color: #fafafa;
+    background-image: url('fundo.jpg'); /* Adiciona a imagem de fundo */
+    background-size: cover; /* Faz a imagem cobrir toda a área de fundo */
+    background-position: center; /* Centraliza a imagem de fundo */
+    background-repeat: no-repeat; /* Evita a repetição da imagem de fundo */
+    transform: scale(1.05); /* Ajusta a escala para destacar a seção */
+    z-index: 2;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: auto; /* Adiciona rolagem se o conteúdo ultrapassar o tamanho da tela */
+    position: relative; /* Necessário para o pseudo-elemento */
+}
+
+/* Camada de sobreposição para a imagem de fundo */
+.section.expanded::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Cor preta com 30% de opacidade */
+    z-index: 1; /* Coloca a sobreposição atrás do conteúdo */
+}
+
+.section-content {
+    display: flex;
+    flex-direction: column; /* Alinha os itens verticalmente na expansão */
+    align-items: center;
+    padding: 20px;
+    position: relative; /* Necessário para a sobreposição */
+    z-index: 2; /* Garante que o conteúdo esteja sobre a sobreposição */
+}
+
+.section img {
+    max-width: 100%; /* Ajusta a imagem para caber no tamanho da seção expandida */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px; /* Adiciona espaço entre a imagem e o texto na expansão */
+}
+
+.text {
+    text-align: center; /* Centraliza o texto na seção expandida */
+    color: #333; /* Cor do texto padrão */
+    transition: color 0.3s; /* Adiciona uma transição suave na mudança de cor */
+}
+
+.text h2 {
+    margin-top: 0;
+    font-size: 22px;
+    line-height: 1.3;
+}
+
+.text p {
+    color: #555; /* Cor do texto do parágrafo */
+    line-height: 1.8;
+    margin: 10px 0;
+    font-size: 16px;
+    text-align: justify;
+    hyphens: auto;
+}
+
+/* Estilo para texto branco quando a seção está expandida */
+.section.expanded .text {
+    color: #fff; /* Cor do texto quando expandido */
+}
+
+.section.expanded .text h2 {
+    color: #fff; /* Cor do título quando expandido */
+}
+
+.section.expanded .text p {
+    color: #fff; /* Cor do parágrafo quando expandido */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .section {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .section {
+        width: calc(100% - 20px);
+    }
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px; /* Adiciona espaço entre o cabeçalho e o banner */
+}
+
+.header h1 {
+    font-size: 30px; /* Ajusta o tamanho da fonte do título */
+    color: #f3eded;
+    margin: 0;
+}
+
+.header p {
+    font-size: 20px; /* Ajusta o tamanho da fonte do subtítulo */
+    color: #f0e9e9;
+    margin: 10px 0 0; /* Adiciona margem superior e remove margem inferior */
+}
